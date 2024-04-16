@@ -26,11 +26,14 @@ C:\Users\用户名\AppData\Local\Pal\Saved\SaveGames\你的SteamId\序列码
 steam下PalServer的打开方式：
 首先要在游戏库中，勾选“工具”：
 <img width="159" alt="s1" src="https://github.com/aiyueqi/Palworld-archive-migration/assets/6499112/27e66609-6640-4da7-8763-5ae1b08f81b2">
-然后会发现出现了Palworld Dedicated Server的图标，配置好后点击运行即可启动游戏专用服务器
-<img width="203" alt="s2" src="https://github.com/aiyueqi/Palworld-archive-migration/assets/6499112/3174be7a-923c-42ba-af9f-06f8928ffe82">
-启动时选择"Open and start as a community server"
-<img width="357" alt="s3" src="https://github.com/aiyueqi/Palworld-archive-migration/assets/6499112/670300c4-6fad-47a9-814c-6b910816fa49">
 
+然后会发现出现了Palworld Dedicated Server的图标，配置好后点击运行即可启动游戏专用服务器
+
+<img width="203" alt="s2" src="https://github.com/aiyueqi/Palworld-archive-migration/assets/6499112/3174be7a-923c-42ba-af9f-06f8928ffe82">
+
+启动时选择"Open and start as a community server"
+
+<img width="357" alt="s3" src="https://github.com/aiyueqi/Palworld-archive-migration/assets/6499112/670300c4-6fad-47a9-814c-6b910816fa49">
 
 专用服务器的存档位置默认在以下路径：
 ```
@@ -41,12 +44,12 @@ C:\Program Files (x86)\Steam\steamapps\common\PalServer\Pal\Saved\SaveGames\0\
 2. 此时C2存档迁移已完成，打开C2上的专用服务器和帕鲁游戏程序，验证人物等级，物品，帕鲁等与存档一致
 3. C1存档的迁移会比较复杂，进入C1机器的C:\Users\用户名\AppData\Local\Pal\Saved\SaveGames\你的SteamId\序列码xxx\Players目录，可发现有两个文件：一个是00000000000000000000000000000001.sav，另一个是假设ABABABABABABABABABABABABABAB1234.sav，前者是原来的主机C1的角色P1对应的序列号，后者是P2的序列号。实测发现，C2成为新的专用服务器之后，序列号未发生改变，还是ABABABABABABABABABABABABABAB1234.sav。而C1加入新的专用服务器后，P1对应的序列号会发生改变，导致存档丢失，此时需要使用github上的一些开源脚本去修改P1对应的序列号
 4. 启动C1的帕鲁程序，输入C2的ip和port，其中帕鲁服务器的port默认是8211，加入专用服务器，并创建新角色，进入世界。
-6. 查看C2的C:\Program Files (x86)\Steam\steamapps\common\PalServer\Pal\Saved\SaveGames\0\序列码xxx\Players目录，发现有新的文件生成，即为P1对应的新的序列号，称为P1'，假设是CDCDCDCDCDCDCDCDCDCDCDCDCDCD5678.sav
-7. 先做好备份，然后使用https://github.com/xNul/palworld-host-save-fix 工具，执行
+5. 查看C2的C:\Program Files (x86)\Steam\steamapps\common\PalServer\Pal\Saved\SaveGames\0\序列码xxx\Players目录，发现有新的文件生成，即为P1对应的新的序列号，称为P1'，假设是CDCDCDCDCDCDCDCDCDCDCDCDCDCD5678.sav
+6. 先做好备份，然后使用https://github.com/xNul/palworld-host-save-fix 工具，执行
 ```
 python fix_host_save.py C:\Program Files (x86)\Steam\steamapps\common\PalServer\Pal\Saved\SaveGames\0\序列码xxx CDCDCDCDCDCDCDCDCDCDCDCDCDCD5678 00000000000000000000000000000001 False
 ```
-8. C1存档迁移完成
+7. C1存档迁移完成
 
 ## 常见问题
 1. 因为palworld-host-save-fix工具依赖palworld-save-tools，所以使用前需要安装palworld-save-tools，建议安装最新版，序列号转换的成功率会更高。即：
@@ -66,5 +69,7 @@ OptionSettings=(PalEggDefaultHatchingTime=0.000000,DeathPenalty=None,BaseCampWor
 
 ## 参考资料
 https://tech.palworldgame.com/
+
 https://github.com/xNul/palworld-host-save-fix
+
 https://github.com/cheahjs/palworld-save-tools
